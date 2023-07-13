@@ -1,0 +1,24 @@
+name: rust-test
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+
+      # - name: install rust
+        # run: rustup toolchain install stable --profile minimal
+
+      - name: cargo version
+        run: cargo --version
+  
