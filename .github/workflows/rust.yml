@@ -19,6 +19,8 @@ jobs:
       # - name: install rust
         # run: rustup toolchain install stable --profile minimal
 
-      - name: cargo version
-        run: cargo --version
+      - name: version
+        run: |
+          cargo --version
+          rustc --version
   
