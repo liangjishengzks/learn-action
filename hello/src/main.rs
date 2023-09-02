@@ -1,3 +1,5 @@
+include!("hello/hello.rs");
+
 fn main() {
-    println!("Hello, world!");
+    println!("{}", message());
 }

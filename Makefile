@@ -1,5 +1,6 @@
-build:
-	cd hello && \
+.PHONY: build
+build: # build
+	@cd hello && \
 	cargo build && \
  	mkdir -p output/bin/ && \
  	cp ./target/debug/hello ./output/bin/ && \
