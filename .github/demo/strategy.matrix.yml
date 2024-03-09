@@ -1,0 +1,28 @@
+name: strategy-test
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 有时候我们常常需要对多个操作系统、多个平台、多个编程语言版本进行测试，
+# 为此我们可以配置一个 matrix 矩阵：
+
+job:
+  runs-on: ${{ matrix.os }}
+  strategy:
+    matrix:
+      os: [ubuntu-18.04, ubuntu-20.04]
+      node: [10, 12, 14]
+  steps:
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node }}
+
+# 这段代码会最终构建多少个作业？答案是 2 * 3 = 6，通过 os 和 node 进行组合
+
+# 除了 matrix ，strategy 中还能设定以下内容：
+# fail-fast : 默认为 true ，即一旦某个矩阵任务失败则立即取消所有还在进行中的任务
+# max-paraller : 可同时执行的最大并发数，默认情况下 GitHub 会动态调整

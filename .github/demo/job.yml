@@ -1,0 +1,19 @@
+name: job-test
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  job1:
+
+  job2:
+    needs: job1
+
+  job3:
+    # 使用 needs 来指定作业之间的依赖关系
+    # 这里的 job2 必须等待 job1 成功后才能运行，而 job3 则需要等待 job1 和 job2
+    needs: [job1, job2]
